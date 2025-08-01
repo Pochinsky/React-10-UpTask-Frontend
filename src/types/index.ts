@@ -15,3 +15,12 @@ export type ProjectFormData = Pick<
   Project,
   "clientName" | "projectName" | "description"
 >;
+
+export const dashboardProjectSchema = z.array(
+  projectSchema.pick({
+    _id: true,
+    projectName: true,
+    clientName: true,
+    description: true,
+  })
+);
