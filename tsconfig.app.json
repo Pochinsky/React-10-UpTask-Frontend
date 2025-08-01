@@ -8,8 +8,11 @@
     "skipLibCheck": true,
     "baseUrl": "src",
     "paths": {
+      "@/api/*": ["api/*"],
       "@/components/*": ["components/*"],
       "@/layouts/*": ["layouts/*"],
+      "@/lib/*": ["lib/*"],
+      "@/types/*": ["types/*"],
       "@/views/*": ["views/*"]
     },
 
