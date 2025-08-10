@@ -9,6 +9,7 @@ import { createProject } from "@/api/ProjectAPI";
 export default function CreateProjectView() {
   const navigate = useNavigate();
 
+  // initial values for forms fields
   const initialValues: ProjectFormData = {
     projectName: "",
     clientName: "",
@@ -21,6 +22,7 @@ export default function CreateProjectView() {
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
 
+  // mutation to create project on form submit
   const { mutate } = useMutation({
     mutationFn: createProject,
     onError: (error) => {
