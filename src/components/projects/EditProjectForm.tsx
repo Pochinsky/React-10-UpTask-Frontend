@@ -18,6 +18,7 @@ export default function EditProjectForm({
   projectId,
 }: EditProjectFormProps) {
   const navigate = useNavigate();
+
   // initial values for forms fields
   const initialValues: ProjectFormData = {
     projectName: data.projectName,
