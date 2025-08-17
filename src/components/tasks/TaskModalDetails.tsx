@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, type ChangeEvent } from "react";
 import {
   Navigate,
   useLocation,
@@ -6,16 +6,18 @@ import {
   useParams,
 } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
-import { useQuery } from "@tanstack/react-query";
-import { getTaskById } from "@/api/TaskAPI";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { getTaskById, updateStatus } from "@/api/TaskAPI";
 import { toast } from "react-toastify";
 import { formatDate } from "@/utils/index";
 import { statusTranslations } from "@/locales/es";
+import type { TaskStatus } from "@/types/index";
 
 export default function TaskModalDetails() {
   const location = useLocation();
   const navigate = useNavigate();
   const params = useParams();
+  const queryClient = useQueryClient();
 
   // get project id
   const projectId = params.projectId!;
@@ -34,6 +36,25 @@ export default function TaskModalDetails() {
     enabled: !!taskId,
     retry: false,
   });
+
+  // mutation to update status
+  const { mutate } = useMutation({
+    mutationFn: updateStatus,
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+      queryClient.invalidateQueries({ queryKey: ["task", taskId] });
+      toast.success(data);
+    },
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const status = e.target.value as TaskStatus;
+    const data = { projectId, taskId, status };
+    mutate(data);
+  };
 
   if (isError) {
     toast.error(error.message, { toastId: "error" });
@@ -94,6 +115,7 @@ export default function TaskModalDetails() {
                         id=""
                         className="w-full p-3 bg-white border border-gray-300"
                         defaultValue={data.status}
+                        onChange={handleChange}
                       >
                         {Object.entries(statusTranslations).map(
                           ([key, value]) => (
