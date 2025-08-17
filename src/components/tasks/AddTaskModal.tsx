@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import TaskForm from "./TaskForm";
 import type { TaskFormData } from "@/types/index";
 import { createTask } from "@/api/TaskAPI";
@@ -35,12 +35,15 @@ export default function AddTaskModal() {
   } = useForm({ defaultValues: initialValues });
 
   // mutation to create task on form submit
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
     mutationFn: createTask,
     onError: (error) => {
       toast.error(error.message);
     },
     onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["editProject", projectId] });
       toast.success(data);
       reset();
     },
