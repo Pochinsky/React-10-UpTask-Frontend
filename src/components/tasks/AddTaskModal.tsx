@@ -10,15 +10,16 @@ import { toast } from "react-toastify";
 
 export default function AddTaskModal() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const params = useParams();
+  const queryClient = useQueryClient();
 
   // check if modal is active
-  const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const modalTask = queryParams.get("newTask");
   const show = modalTask ? true : false;
 
   // get project id
-  const params = useParams();
   const projectId = params.projectId!;
 
   // initial values for forms fields
@@ -35,8 +36,6 @@ export default function AddTaskModal() {
   } = useForm({ defaultValues: initialValues });
 
   // mutation to create task on form submit
-  const queryClient = useQueryClient();
-
   const { mutate } = useMutation({
     mutationFn: createTask,
     onError: (error) => {

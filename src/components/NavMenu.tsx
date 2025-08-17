@@ -1,7 +1,7 @@
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import { Bars3Icon } from "@heroicons/react/20/solid";
-import { Link } from "react-router-dom";
 
 export default function NavMenu() {
   return (

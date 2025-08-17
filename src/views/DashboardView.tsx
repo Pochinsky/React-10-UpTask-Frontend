@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
 import { Fragment } from "react";
+import { Link } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Menu, Transition } from "@headlessui/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/20/solid";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteProject, getProjects } from "@/api/ProjectAPI";
 import { toast } from "react-toastify";
+import { deleteProject, getProjects } from "@/api/ProjectAPI";
 
 export default function DashboardView() {
+  const queryClient = useQueryClient();
+
   // useQuery to get all projects
   const { data, isLoading } = useQuery({
     queryKey: ["projects"],
@@ -14,7 +16,6 @@ export default function DashboardView() {
   });
 
   // mutation to delete a project
-  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: deleteProject,
     onError: (error) => {

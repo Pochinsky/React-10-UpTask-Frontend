@@ -4,12 +4,13 @@ import { getTaskById } from "@/api/TaskAPI";
 import EditTaskModal from "./EdiTaskModal";
 
 export default function EditTaskData() {
-  // get project id
   const params = useParams();
+  const location = useLocation();
+
+  // get project id
   const projectId = params.projectId!;
 
   // get task id
-  const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const taskId = queryParams.get("editTask")!;
 
@@ -21,6 +22,5 @@ export default function EditTaskData() {
   });
 
   if (isError) return <Navigate to="/404" />;
-
   if (data) return <EditTaskModal data={data} taskId={taskId} />;
 }

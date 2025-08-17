@@ -18,6 +18,7 @@ export default function EditProjectForm({
   projectId,
 }: EditProjectFormProps) {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   // initial values for forms fields
   const initialValues: ProjectFormData = {
@@ -31,8 +32,6 @@ export default function EditProjectForm({
     handleSubmit,
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
-
-  const queryClient = useQueryClient();
 
   // mutation to update project on form submit
   const { mutate } = useMutation({

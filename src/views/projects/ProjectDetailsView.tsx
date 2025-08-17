@@ -7,8 +7,9 @@ import EditTaskData from "@/components/tasks/EditTaskData";
 
 export default function ProjectDetailsView() {
   const navigate = useNavigate();
-  // get url params
   const params = useParams();
+
+  // get project id
   const projectId = params.projectId!;
 
   // useQuery to get project that will be edite

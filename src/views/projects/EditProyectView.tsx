@@ -4,8 +4,9 @@ import { getProjectById } from "@/api/ProjectAPI";
 import EditProjectForm from "@/components/projects/EditProjectForm";
 
 export default function EditProyectView() {
-  // get url params
   const params = useParams();
+
+  // get url params
   const projectId = params.projectId!;
 
   // useQuery to get project that will be edite
