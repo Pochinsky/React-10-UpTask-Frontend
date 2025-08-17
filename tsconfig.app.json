@@ -12,7 +12,9 @@
       "@/components/*": ["components/*"],
       "@/layouts/*": ["layouts/*"],
       "@/lib/*": ["lib/*"],
+      "@/locales/*": ["locales/*"],
       "@/types/*": ["types/*"],
+      "@/utils/*": ["utils/*"],
       "@/views/*": ["views/*"]
     },
 
