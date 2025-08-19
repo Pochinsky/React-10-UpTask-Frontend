@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import type { UserLoginForm } from "@/types/index";
 import ErrorMessage from "@/components/ErrorMessage";
+import { Link } from "react-router-dom";
 
 export default function LoginView() {
   const initialValues: UserLoginForm = {
@@ -28,7 +29,7 @@ export default function LoginView() {
           <input
             id="email"
             type="email"
-            placeholder="Email de Registro"
+            placeholder="Ej: pedro@correo.com"
             className="w-full p-3  border-gray-300 border"
             {...register("email", {
               required: "El Email es obligatorio",
@@ -46,7 +47,7 @@ export default function LoginView() {
 
           <input
             type="password"
-            placeholder="Password de Registro"
+            placeholder="********"
             className="w-full p-3  border-gray-300 border"
             {...register("password", {
               required: "El Password es obligatorio",
@@ -63,6 +64,14 @@ export default function LoginView() {
           className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3  text-white font-black  text-xl cursor-pointer"
         />
       </form>
+      <nav className="mt-10 flex flex-col space-y-4">
+        <Link
+          to="/auth/register"
+          className="text-center text-gray-300 font-normal"
+        >
+          ¿No tienes cuenta? Crea una
+        </Link>
+      </nav>
     </section>
   );
 }
