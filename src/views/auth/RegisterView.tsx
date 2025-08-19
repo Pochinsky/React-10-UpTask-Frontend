@@ -62,10 +62,10 @@ export default function RegisterView() {
             placeholder="Ej: pedro@correo.com"
             className="w-full p-3  border-gray-300 border"
             {...register("email", {
-              required: "El Email de registro es obligatorio",
+              required: "El email es obligatorio",
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: "E-mail no válido",
+                message: "Email no válido",
               },
             })}
           />
@@ -79,7 +79,7 @@ export default function RegisterView() {
             placeholder="Ej: Pedro"
             className="w-full p-3  border-gray-300 border"
             {...register("name", {
-              required: "El Nombre de usuario es obligatorio",
+              required: "El nombre es obligatorio",
             })}
           />
           {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
@@ -93,10 +93,10 @@ export default function RegisterView() {
             placeholder="********"
             className="w-full p-3  border-gray-300 border"
             {...register("password", {
-              required: "El Password es obligatorio",
+              required: "La contraseña es obligatorio",
               minLength: {
                 value: 8,
-                message: "El Password debe ser mínimo de 8 caracteres",
+                message: "La contraseña debe ser mínimo de 8 caracteres",
               },
             })}
           />
@@ -114,9 +114,9 @@ export default function RegisterView() {
             placeholder="********"
             className="w-full p-3  border-gray-300 border"
             {...register("password_confirmation", {
-              required: "Repetir Password es obligatorio",
+              required: "Se debe repetir la contraseña",
               validate: (value) =>
-                value === password || "Los Passwords no son iguales",
+                value === password || "Las contraseñas no son iguales",
             })}
           />
 
