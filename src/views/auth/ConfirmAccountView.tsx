@@ -5,8 +5,9 @@ import {
   PinInputHiddenInput,
   PinInputControl,
   PinInputInput,
+  ChakraProvider,
+  defaultSystem,
 } from "@chakra-ui/react";
-import { ChakraProvider, defaultSystem } from "@chakra-ui/react";
 import { useMutation } from "@tanstack/react-query";
 import { confirmAccount } from "@/api/AuthAPI";
 import { toast } from "react-toastify";
