@@ -41,7 +41,7 @@ export default function ForgotPasswordView() {
       <p className="text-2xl font-light text-white mt-5">
         Ingresa tu email y recibe un {""}
         <span className=" text-fuchsia-500 font-bold">
-          correo con los próximos pasos
+          código para reestablecer tu contaseña
         </span>
       </p>
       <form
@@ -71,12 +71,18 @@ export default function ForgotPasswordView() {
 
         <input
           type="submit"
-          value="Recibir Instrucciones"
+          value="Recibir código"
           className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3  text-white font-black  text-xl cursor-pointer"
         />
       </form>
 
       <nav className="mt-10 flex flex-col space-y-4">
+        <Link
+          to="/auth/new-password"
+          className="text-center text-gray-300 font-normal"
+        >
+          ¿Ya tienes tu código? Termina de reestablecer tu contaseña
+        </Link>
         <Link
           to="/auth/login"
           className="text-center text-gray-300 font-normal"
