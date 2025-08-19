@@ -36,7 +36,7 @@ export default function RequestNewCodeView() {
   };
 
   return (
-    <>
+    <section>
       <h1 className="text-5xl font-black text-white">
         Solicitar código de confirmación
       </h1>
@@ -97,6 +97,6 @@ export default function RequestNewCodeView() {
           ¿Olvidaste tu contraseña? Reestablecer
         </Link>
       </nav>
-    </>
+    </section>
   );
 }
