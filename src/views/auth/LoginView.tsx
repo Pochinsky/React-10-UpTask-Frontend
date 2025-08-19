@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 import type { UserLoginForm } from "@/types/index";
 import ErrorMessage from "@/components/ErrorMessage";
+import { login } from "@/api/AuthAPI";
+import { toast } from "react-toastify";
 
 export default function LoginView() {
+  // initial values to form fields
   const initialValues: UserLoginForm = {
     email: "",
     password: "",
@@ -14,7 +18,20 @@ export default function LoginView() {
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
 
-  const handleLogin = (formData: UserLoginForm) => {};
+  // use mutation to login on submit form
+  const { mutate } = useMutation({
+    mutationFn: login,
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    onSuccess: (data) => {
+      toast.success(data);
+    },
+  });
+
+  const handleLogin = (formData: UserLoginForm) => {
+    mutate(formData);
+  };
 
   return (
     <section>
@@ -32,10 +49,10 @@ export default function LoginView() {
             placeholder="Ej: pedro@correo.com"
             className="w-full p-3  border-gray-300 border"
             {...register("email", {
-              required: "El Email es obligatorio",
+              required: "El email es obligatorio",
               pattern: {
                 value: /\S+@\S+\.\S+/,
-                message: "E-mail no válido",
+                message: "Email no válido",
               },
             })}
           />
@@ -50,7 +67,7 @@ export default function LoginView() {
             placeholder="********"
             className="w-full p-3  border-gray-300 border"
             {...register("password", {
-              required: "El Password es obligatorio",
+              required: "La contraseña es obligatorio",
             })}
           />
           {errors.password && (
