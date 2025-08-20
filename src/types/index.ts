@@ -1,6 +1,10 @@
 import { z } from "zod";
 
-/** Auth & Users */
+/**
+ * =================
+ * Auth
+ * =================
+ */
 
 export const authSchema = z.object({
   name: z.string(),
@@ -30,7 +34,23 @@ export type NewPasswordForm = Pick<
 
 export type ConfirmToken = Pick<AuthType, "token">;
 
-/** Projects */
+/**
+ * =================
+ * Users
+ * =================
+ */
+
+export const userSchema = authSchema
+  .pick({ name: true, email: true })
+  .extend({ _id: z.string() });
+
+export type User = z.infer<typeof userSchema>;
+
+/**
+ * =================
+ * Projects
+ * =================
+ */
 
 export const projectSchema = z.object({
   _id: z.string(),
@@ -55,7 +75,11 @@ export const dashboardProjectSchema = z.array(
   })
 );
 
-/** Tasks */
+/**
+ * =================
+ * Tasks
+ * =================
+ */
 
 export const taskStatusSchema = z.enum([
   "pending",
