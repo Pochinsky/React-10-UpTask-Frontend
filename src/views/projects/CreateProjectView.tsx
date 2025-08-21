@@ -60,7 +60,7 @@ export default function CreateProjectView() {
           <input
             type="submit"
             value="Crear proyecto"
-            className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white uppercase font-bold cursor-pointer transition-colors"
+            className="bg-purple-600 hover:bg-purple-700 w-full p-3 text-white uppercase font-bold cursor-pointer transition-colors"
           />
         </form>
       </div>
