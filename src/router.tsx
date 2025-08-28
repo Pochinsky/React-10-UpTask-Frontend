@@ -8,14 +8,16 @@ import ProjectDetailsView from "@/views/projects/ProjectDetailsView";
 import LoginView from "@/views/auth/LoginView";
 import RegisterView from "@/views/auth/RegisterView";
 import ConfirmAccountView from "@/views/auth/ConfirmAccountView";
-import RequestNewCodeView from "./views/auth/RequestNewCodeView";
-import ForgotPasswordView from "./views/auth/ForgotPasswordView";
-import NewPasswordView from "./views/auth/NewPasswordView";
+import RequestNewCodeView from "@/views/auth/RequestNewCodeView";
+import ForgotPasswordView from "@/views/auth/ForgotPasswordView";
+import NewPasswordView from "@/views/auth/NewPasswordView";
+import ProjectTeamView from "@/views/projects/ProjectTeamView";
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Projects Routes */}
         <Route element={<AppLayout />}>
           <Route path="/" element={<DashboardView />} index />
           <Route path="/projects/create" element={<CreateProjectView />} />
@@ -24,7 +26,12 @@ export default function Router() {
             path="/projects/:projectId/edit"
             element={<EditProyectView />}
           />
+          <Route
+            path="/projects/:projectId/team"
+            element={<ProjectTeamView />}
+          />
         </Route>
+        {/* Authentication Routes */}
         <Route element={<AuthLayout />}>
           <Route path="/auth/login" element={<LoginView />} />
           <Route path="/auth/register" element={<RegisterView />} />

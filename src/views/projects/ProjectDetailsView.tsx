@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProjectById } from "@/api/ProjectAPI";
 import AddTaskModal from "@/components/tasks/AddTaskModal";
@@ -32,18 +32,26 @@ export default function ProjectDetailsView() {
         <nav className="my-5 flex flex-col gap-8 md:flex-row-reverse md:justify-between">
           <button
             type="button"
-            className="bg-purple-400 hover:bg-purple-500 px-10 py-3 text-white text-xl cursor-pointer transition-colors"
+            className="bg-fuchsia-400 hover:bg-fuchsia-500 px-10 py-3 text-white text-xl cursor-pointer transition-colors"
             onClick={() => navigate("/")}
           >
-            Volver a mis proyectos
+            Volver a mis Proyectos
           </button>
-          <button
-            type="button"
-            className="bg-purple-600 hover:bg-purple-700 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors"
-            onClick={() => navigate(location.pathname + "?newTask=true")}
-          >
-            Agregar tarea
-          </button>
+          <div className="flex flex-col gap-8 md:flex-row-reverse">
+            <Link
+              to={"team"}
+              className="bg-purple-500 hover:bg-purple-600 px-10 py-3 text-white text-xl text-center font-bold cursor-pointer transition-colors"
+            >
+              Colaboradores
+            </Link>
+            <button
+              type="button"
+              className="bg-fuchsia-600 hover:bg-fuchsia-700 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors"
+              onClick={() => navigate(location.pathname + "?newTask=true")}
+            >
+              Agregar Tarea
+            </button>
+          </div>
         </nav>
         <TaskList tasks={data.tasks} />
         <AddTaskModal />
