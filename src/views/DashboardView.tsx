@@ -39,7 +39,7 @@ export default function DashboardView() {
         <nav className="my-6">
           <Link
             to="/projects/create"
-            className="bg-purple-400 hover:bg-purple-500 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors"
+            className="bg-fuchsia-500 hover:bg-fuchsia-600 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors"
           >
             Crear proyecto
           </Link>

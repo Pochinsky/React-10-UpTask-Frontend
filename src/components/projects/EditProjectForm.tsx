@@ -60,25 +60,26 @@ export default function EditProjectForm({
           Modifica las características de tu proyecto en el siguiente
           formulario.
         </p>
-        <nav className="my-6">
-          <Link
-            to="/"
-            className="bg-purple-400 hover:bg-purple-500 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors"
-          >
-            Volver a mis proyectos
-          </Link>
-        </nav>
+        <nav className="my-6"></nav>
         <form
           className="mt-10 bg-white shadow-lg p-10 rounded-lg"
           onSubmit={handleSubmit(handleForm)}
           noValidate
         >
           <ProjectForm register={register} errors={errors} />
-          <input
-            type="submit"
-            value="Guardar cambios"
-            className="bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white uppercase font-bold cursor-pointer transition-colors"
-          />
+          <div className="mt-5 flex flex-col gap-6  md:flex-row md:justify-between">
+            <input
+              type="submit"
+              value="Guardar cambios"
+              className="bg-fuchsia-600 hover:bg-fuchsia-700 px-10 py-3 text-white text-xl font-bold cursor-pointer transition-colors"
+            />
+            <Link
+              to="/"
+              className="bg-fuchsia-400 hover:bg-fuchsia-500 px-10 py-3 text-white text-xl text-center cursor-pointer transition-colors"
+            >
+              Volver a mis proyectos
+            </Link>
+          </div>
         </form>
       </div>
     </section>
