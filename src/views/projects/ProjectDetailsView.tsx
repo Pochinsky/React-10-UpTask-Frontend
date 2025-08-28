@@ -32,7 +32,7 @@ export default function ProjectDetailsView() {
         <nav className="my-5 flex flex-col gap-8 md:flex-row-reverse md:justify-between">
           <button
             type="button"
-            className="bg-fuchsia-400 hover:bg-fuchsia-500 px-10 py-3 text-white text-xl cursor-pointer transition-colors"
+            className="text-purple-500 hover:bg-purple-100 px-10 py-3 text-xl font-bold cursor-pointer transition-colors"
             onClick={() => navigate("/")}
           >
             Volver a mis Proyectos

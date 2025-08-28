@@ -57,7 +57,7 @@ export default function CreateProjectView() {
             />
             <Link
               to="/"
-              className="bg-fuchsia-400 hover:bg-fuchsia-500 px-10 py-3 text-white text-xl text-center cursor-pointer transition-colors"
+              className="text-purple-600 hover:bg-purple-100 px-10 py-3 text-xl text-center font-bold cursor-pointer transition-colors"
             >
               Volver a mis proyectos
             </Link>
