@@ -92,7 +92,7 @@ export default function TaskModalDetails() {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all p-16">
+                  <Dialog.Panel className="w-full max-w-4xl transform   overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all p-16">
                     <p className="text-sm text-slate-400">
                       Agregada el: {formatDate(data.createdAt)}
                     </p>
@@ -108,6 +108,28 @@ export default function TaskModalDetails() {
                     <p className="text-lg text-slate-500 mb-2">
                       Descripción: {data.description}
                     </p>
+                    <p className="text-2xl font-bold text-slate-500 mb-2">
+                      Historial de cambios
+                    </p>
+                    <ul className="list-decimal list-inside">
+                      {data.completedBy.map((activityLog) => (
+                        <li
+                          key={activityLog._id}
+                          className="text-slate-600 text-sm"
+                        >
+                          El estado de la tarea cambió a{" "}
+                          <span className="font-bold">
+                            {statusTranslations[activityLog.status]}
+                          </span>{" "}
+                          por{" "}
+                          <span className="font-bold">
+                            {activityLog.user.name}
+                          </span>{" "}
+                          el día {formatDate(activityLog.completedAt)}
+                        </li>
+                      ))}
+                    </ul>
+
                     <div className="my-5 space-y-3">
                       <label className="font-bold">Estado Actual:</label>
                       <select
