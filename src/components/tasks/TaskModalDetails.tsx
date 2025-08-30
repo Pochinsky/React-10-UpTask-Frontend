@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import { formatDate } from "@/utils/index";
 import { statusTranslations } from "@/locales/es";
 import type { TaskStatus } from "@/types/index";
+import NotesPanel from "../notes/NotesPanel";
 
 export default function TaskModalDetails() {
   const location = useLocation();
@@ -108,27 +109,31 @@ export default function TaskModalDetails() {
                     <p className="text-lg text-slate-500 mb-2">
                       Descripción: {data.description}
                     </p>
-                    <p className="text-2xl font-bold text-slate-500 mb-2">
-                      Historial de cambios
-                    </p>
-                    <ul className="list-decimal list-inside">
-                      {data.completedBy.map((activityLog) => (
-                        <li
-                          key={activityLog._id}
-                          className="text-slate-600 text-sm"
-                        >
-                          El estado de la tarea cambió a{" "}
-                          <span className="font-bold">
-                            {statusTranslations[activityLog.status]}
-                          </span>{" "}
-                          por{" "}
-                          <span className="font-bold">
-                            {activityLog.user.name}
-                          </span>{" "}
-                          el día {formatDate(activityLog.completedAt)}
-                        </li>
-                      ))}
-                    </ul>
+                    {data.completedBy.length ? (
+                      <>
+                        <p className="text-2xl font-bold text-slate-500 mb-2">
+                          Historial de cambios
+                        </p>
+                        <ul className="list-decimal list-inside">
+                          {data.completedBy.map((activityLog) => (
+                            <li
+                              key={activityLog._id}
+                              className="text-slate-600 text-sm"
+                            >
+                              El estado de la tarea cambió a{" "}
+                              <span className="font-bold">
+                                {statusTranslations[activityLog.status]}
+                              </span>{" "}
+                              por{" "}
+                              <span className="font-bold">
+                                {activityLog.user.name}
+                              </span>{" "}
+                              el día {formatDate(activityLog.completedAt)}
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    ) : null}
 
                     <div className="my-5 space-y-3">
                       <label className="font-bold">Estado Actual:</label>
@@ -148,6 +153,7 @@ export default function TaskModalDetails() {
                         )}
                       </select>
                     </div>
+                    <NotesPanel notes={data.notes} />
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
